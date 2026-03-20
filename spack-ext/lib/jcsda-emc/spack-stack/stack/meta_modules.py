@@ -622,11 +622,15 @@ def setup_meta_modules():
             #        not "ifx" in COMPILER_SUBSTITUTES_SAVE["FC"] and "ifort" in COMPILER_SUBSTITUTES_SAVE["FC"]:
             #    substitutes["MPIF77"] = substitutes["MPIF77"].replace("mpiifx", "mpiifort")
             #    substitutes["MPIF90"] = substitutes["MPIF90"].replace("mpiifx", "mpiifort")
+
             if mpi_provider.name == "intel-oneapi-mpi" and compiler.name == "intel-oneapi-compilers":
                 if os.path.exists(os.path.join(mpi_provider.prefix.bin, "mpiicx")):
                     mpi_provider_prefix = mpi_provider.prefix.bin
+                    print(os.path.join(mpi_provider.prefix, "mpi", str(mpi_provider.version), "bin", "mpiicx"))
                 elif os.path.exists(os.path.join(mpi_provider.prefix, "mpi", str(mpi_provider.version), "bin", "mpiicx")):
                     mpi_provider_prefix = os.path.join(mpi_provider.prefix, "mpi", str(mpi_provider.version), "bin")
+                elif os.path.exists(os.path.join(mpi_provider.prefix, "mpi", f"{mpi_provider.version[0]}.{mpi_provider.version[1]}", "bin", "mpiicx")):
+                    mpi_provider_prefix = os.path.join(mpi_provider.prefix, "mpi", f"{mpi_provider.version[0]}.{mpi_provider.version[1]}", "bin")
                 else:
                     raise Exception("Unable to locate 'mpiicx'")
                 substitutes["MPICC"]  = os.path.join(mpi_provider_prefix, "mpiicx")
