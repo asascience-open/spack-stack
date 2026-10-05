@@ -1,0 +1,79 @@
+packages:
+  intel-oneapi-compilers:
+    buildable: false
+    externals:
+    - spec: intel-oneapi-compilers@2024.2.1
+      prefix: /opt/intel/oneapi
+      modules:
+       - intel/tbb/2021.13
+       - intel/compiler-rt/2024.2.1
+       - intel/compiler-intel-llvm/2024.2.1 
+       - intel/compiler/2024.2.1
+      extra_attributes:
+        compilers:
+          c: /opt/intel/oneapi/compiler/2024.2/bin/icx
+          cxx: /opt/intel/oneapi/compiler/2024.2/bin/icpx
+          fortran: /opt/intel/oneapi/compiler/2024.2/bin/ifx
+
+  intel-oneapi-compilers-classic:
+    buildable: false
+    externals:
+    - spec: intel-oneapi-compilers-classic@2021.13.2
+      prefix: /opt/intel/oneapi/compiler/2024.2
+      modules:
+       - intel/ifort/2024.2.1 
+       - intel/compiler-rt/2024.2.1
+      extra_attributes:
+        compilers:
+          fortran: /opt/intel/oneapi/compiler/2024.2/bin/ifort
+
+  openmpi:
+    buildable: false
+  mpich:
+    buildable: false
+
+  gcc:
+    buildable: false
+    externals:
+    - spec: gcc@14.3.1 languages:='c,c++'
+      prefix: /usr
+      extra_attributes:
+        compilers:
+          c: /usr/bin/gcc
+          cxx: /usr/bin/g++
+
+#  gcc:
+#    externals:
+#    - spec: gcc@13.3.0 languages:='c,c++,fortran'
+#      prefix: /usr
+#      extra_attributes:
+#        compilers:
+#          c: /usr/bin/gcc
+#          cxx: /usr/bin/g++
+#          fortran: /usr/bin/gfortran
+#    buildable: false
+
+  intel-oneapi-mkl:
+    buildable: false
+    externals:
+    - spec: intel-oneapi-mkl@2024.2
+      prefix: /opt/intel/oneapi
+      modules:
+      - intel/mkl/2024.2
+
+  intel-oneapi-mpi:
+    buildable: false
+    externals:
+    - spec: intel-oneapi-mpi@2021.16
+      modules:
+      - intel/mpi/2021.16
+      prefix: /opt/intel/oneapi
+
+  intel-oneapi-tbb:
+    buildable: false
+    externals:
+    - spec: intel-oneapi-tbb@2021.13
+      prefix: /opt/intel/oneapi
+      modules:
+      - intel/tbb/2021.13
+
